@@ -93,16 +93,18 @@ var timeDown = 76;
 var correctAnswer = 0;
 
 var questionsAnswered = 0;
+var timeInterval = 0;
 
 function startTime(){
-    var timeInterval = setInterval(function() {
-        timeDown--;
-        getTime.textContent = timeDown;
-
-        if(timeDown === 0) {
+     timeInterval = setInterval(function() {
+       
+      if(timeDown === 0) {
             clearInterval(timeInterval);
             endPage.style.display = "block" 
-        } 
+        } else {
+            timeDown--;
+            getTime.textContent = timeDown;
+        }
     }, 1000)
     
      
@@ -163,7 +165,7 @@ function answerClick4(event){
 function giveQuestion() {
     
     if(questionsArr < 10){
-        endPage.style.display = "block"
+        
      
     
     let q = questions[questionsArr];     
@@ -178,7 +180,11 @@ function giveQuestion() {
     showQuestion.style.display = "none"
     selectQuestion.style.display = "none"
     endPage.style.display = "block"
-}  }
+    showScore.textContent = "SCORE " + correctAnswer;
+    setStorage();
+}
+ 
+}
     
 
 
@@ -191,7 +197,7 @@ function checkAnswer(event) {
     // take users choice and target the value where the answer is in the array
     var userChoice = event.target.dataset.value;
     // if the user choice is equal to the right answer go
-    if(userChoice === answerArr) {
+    if(userChoice == answerArr) {
         correctAnswer++;
        
         
@@ -204,6 +210,12 @@ function checkAnswer(event) {
     console.log(correctAnswer)
         console.log(questionsAnswered)
 }
+function setStorage () {
+    var storage = localStorage.setItem("Score", correctAnswer)
+
+
+}
+
 
 
     
