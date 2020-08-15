@@ -100,10 +100,12 @@ function startTime(){
         getTime.textContent = timeDown;
 
         if(timeDown === 0) {
-           clearInterval(timeInterval);
-           endPage.style.display = "block"
-        }
+            clearInterval(timeInterval);
+            endPage.style.display = "block" 
+        } 
     }, 1000)
+    
+     
 }
 
 
@@ -190,14 +192,15 @@ function checkAnswer(event) {
     var userChoice = event.target.dataset.value;
     // if the user choice is equal to the right answer go
     if(userChoice === answerArr) {
-        
+        correctAnswer++;
+       
         
     } else { 
-        timeDown = timeDown - 5;
+      timeDown = timeDown - 5;
     }
-    correctAnswer++;
-        questionsAnswered++;
+    questionsAnswered++;
     questionsArr++;
+    
     console.log(correctAnswer)
         console.log(questionsAnswered)
 }
